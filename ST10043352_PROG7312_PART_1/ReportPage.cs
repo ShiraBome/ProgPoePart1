@@ -44,8 +44,7 @@ namespace ST10043352_PROG7312_PART_1
         // Update progress when the location is changed
         private void TxtLocation_TextChanged(object sender, EventArgs e)
         {
-            // lblLocationPlaceholder.Visible = string.IsNullOrEmpty(txtLocation.Text);
-            UpdateProgress(); // Update progress bar when location is entered
+            UpdateProgress(); 
         }
 
         // Update progress when the category is selected
@@ -257,11 +256,6 @@ namespace ST10043352_PROG7312_PART_1
             // Show the form as a modal dialog box
             imageSelectorForm.ShowDialog();
         }
-
-
-
-
-
 
         // Handles saving the issue
         private void BtnSubmit_Click(object sender, EventArgs e)
