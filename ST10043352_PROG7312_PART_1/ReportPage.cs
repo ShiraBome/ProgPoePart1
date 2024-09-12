@@ -19,6 +19,30 @@ namespace ST10043352_PROG7312_PART_1
             InitializeComponent();
             UpdateButtonVisibility();
         }
+        private void BtnUpvote_Click(object sender, EventArgs e)
+        {
+            if (!hasVoted)
+            {
+                voteResult = 1; // Upvote
+                hasVoted = true;
+                btnUpvote.Enabled = false;
+                btnDownvote.Enabled = false;
+                MessageBox.Show("Thank you for upvoting!");
+            }
+        }
+
+        private void BtnDownvote_Click(object sender, EventArgs e)
+        {
+            if (!hasVoted)
+            {
+                voteResult = -1; // Downvote
+                hasVoted = true;
+                btnUpvote.Enabled = false;
+                btnDownvote.Enabled = false;
+                MessageBox.Show("We are sorry to here that, we will try improve!");
+            }
+        }
+
 
         // When user enters the location text field
         private void TxtLocation_Enter(object sender, EventArgs e)
