@@ -18,6 +18,7 @@
         private System.Windows.Forms.Label lblRateExperience;
         private System.Windows.Forms.Button btnUpvote;
         private System.Windows.Forms.Button btnDownvote;
+        private System.Windows.Forms.Button btnViewIssues; // New Button: View All Issues
 
         protected override void Dispose(bool disposing)
         {
@@ -27,9 +28,6 @@
             }
             base.Dispose(disposing);
         }
-
-        private bool hasVoted = false;  // Track if the user has voted
-        private int voteResult = 0;
 
         private void InitializeComponent()
         {
@@ -48,7 +46,7 @@
             this.lblRateExperience = new System.Windows.Forms.Label();
             this.btnUpvote = new System.Windows.Forms.Button();
             this.btnDownvote = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnViewIssues = new System.Windows.Forms.Button(); // Initialize the "View All Issues" button
             this.SuspendLayout();
             // 
             // txtLocation
@@ -77,6 +75,7 @@
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(416, 28);
             this.cmbCategory.TabIndex = 1;
+            this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
             // 
             // rtbDescription
             // 
@@ -210,26 +209,25 @@
             this.btnDownvote.UseVisualStyleBackColor = false;
             this.btnDownvote.Click += new System.EventHandler(this.BtnDownvote_Click);
             // 
-            // label1
+            // btnViewIssues
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(272, 204);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(145, 20);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Enter a Description";
+            this.btnViewIssues.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnViewIssues.ForeColor = System.Drawing.Color.White;
+            this.btnViewIssues.Location = new System.Drawing.Point(743, 370); // Position can be adjusted as needed
+            this.btnViewIssues.Name = "btnViewIssues";
+            this.btnViewIssues.Size = new System.Drawing.Size(180, 42);
+            this.btnViewIssues.TabIndex = 14;
+            this.btnViewIssues.Text = "View All Issues";
+            this.btnViewIssues.UseVisualStyleBackColor = false;
+            this.btnViewIssues.Click += new System.EventHandler(this.BtnViewIssues_Click);
             // 
             // ReportPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(981, 658);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.lblRateExperience);
-            this.Controls.Add(this.btnUpvote);
-            this.Controls.Add(this.btnDownvote);
+            this.Controls.Add(this.btnViewIssues); // Add the button to the form's controls
             this.Controls.Add(this.btnRemoveImage);
-            this.Controls.Add(this.lblReportIssue);
             this.Controls.Add(this.btnViewImage);
             this.Controls.Add(this.progressBarReport);
             this.Controls.Add(this.txtLocation);
@@ -239,13 +237,14 @@
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.lblEngagement);
             this.Controls.Add(this.btnBackToMain);
+            this.Controls.Add(this.lblReportIssue);
+            this.Controls.Add(this.lblRateExperience);
+            this.Controls.Add(this.btnUpvote);
+            this.Controls.Add(this.btnDownvote);
             this.Name = "ReportPage";
             this.Text = "Report Issue";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
-
-        private System.Windows.Forms.Label label1;
     }
 }
