@@ -34,8 +34,9 @@
             // 
             // btnReportIssues
             // 
-            this.btnReportIssues.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnReportIssues.ForeColor = System.Drawing.Color.White;
+            this.btnReportIssues.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.btnReportIssues.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportIssues.ForeColor = System.Drawing.Color.Black;
             this.btnReportIssues.Location = new System.Drawing.Point(112, 167);
             this.btnReportIssues.Name = "btnReportIssues";
             this.btnReportIssues.Size = new System.Drawing.Size(333, 65);
@@ -46,8 +47,9 @@
             // 
             // btnLocalEvents
             // 
-            this.btnLocalEvents.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnLocalEvents.ForeColor = System.Drawing.Color.White;
+            this.btnLocalEvents.BackColor = System.Drawing.Color.Orchid;
+            this.btnLocalEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLocalEvents.ForeColor = System.Drawing.Color.Black;
             this.btnLocalEvents.Location = new System.Drawing.Point(112, 274);
             this.btnLocalEvents.Name = "btnLocalEvents";
             this.btnLocalEvents.Size = new System.Drawing.Size(333, 65);
@@ -58,8 +60,9 @@
             // 
             // btnServiceRequestStatus
             // 
-            this.btnServiceRequestStatus.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnServiceRequestStatus.ForeColor = System.Drawing.Color.White;
+            this.btnServiceRequestStatus.BackColor = System.Drawing.Color.Aquamarine;
+            this.btnServiceRequestStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnServiceRequestStatus.ForeColor = System.Drawing.Color.Black;
             this.btnServiceRequestStatus.Location = new System.Drawing.Point(112, 388);
             this.btnServiceRequestStatus.Name = "btnServiceRequestStatus";
             this.btnServiceRequestStatus.Size = new System.Drawing.Size(333, 65);
@@ -71,7 +74,8 @@
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.Color.Salmon;
-            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.Color.Black;
             this.btnExit.Location = new System.Drawing.Point(112, 491);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(333, 65);

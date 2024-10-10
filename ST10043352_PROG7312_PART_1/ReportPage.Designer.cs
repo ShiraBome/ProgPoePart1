@@ -46,14 +46,16 @@
             this.lblRateExperience = new System.Windows.Forms.Label();
             this.btnUpvote = new System.Windows.Forms.Button();
             this.btnDownvote = new System.Windows.Forms.Button();
-            this.btnViewIssues = new System.Windows.Forms.Button(); // Initialize the "View All Issues" button
+            this.btnViewIssues = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtLocation
             // 
             this.txtLocation.BackColor = System.Drawing.Color.White;
             this.txtLocation.ForeColor = System.Drawing.Color.Black;
-            this.txtLocation.Location = new System.Drawing.Point(276, 92);
+            this.txtLocation.Location = new System.Drawing.Point(275, 108);
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(416, 26);
             this.txtLocation.TabIndex = 0;
@@ -71,7 +73,7 @@
             "Sanitation",
             "Roads",
             "Utilities"});
-            this.cmbCategory.Location = new System.Drawing.Point(275, 151);
+            this.cmbCategory.Location = new System.Drawing.Point(275, 152);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(416, 28);
             this.cmbCategory.TabIndex = 1;
@@ -81,7 +83,7 @@
             // 
             this.rtbDescription.BackColor = System.Drawing.Color.White;
             this.rtbDescription.ForeColor = System.Drawing.Color.Black;
-            this.rtbDescription.Location = new System.Drawing.Point(275, 231);
+            this.rtbDescription.Location = new System.Drawing.Point(276, 194);
             this.rtbDescription.Name = "rtbDescription";
             this.rtbDescription.Size = new System.Drawing.Size(416, 164);
             this.rtbDescription.TabIndex = 2;
@@ -90,11 +92,13 @@
             // 
             // btnAttachMedia
             // 
-            this.btnAttachMedia.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnAttachMedia.ForeColor = System.Drawing.Color.White;
-            this.btnAttachMedia.Location = new System.Drawing.Point(743, 193);
+            this.btnAttachMedia.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAttachMedia.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.btnAttachMedia.FlatAppearance.BorderColor = System.Drawing.Color.DarkTurquoise;
+            this.btnAttachMedia.ForeColor = System.Drawing.Color.Black;
+            this.btnAttachMedia.Location = new System.Drawing.Point(217, 16);
             this.btnAttachMedia.Name = "btnAttachMedia";
-            this.btnAttachMedia.Size = new System.Drawing.Size(180, 42);
+            this.btnAttachMedia.Size = new System.Drawing.Size(131, 40);
             this.btnAttachMedia.TabIndex = 3;
             this.btnAttachMedia.Text = "Attach Media";
             this.btnAttachMedia.UseVisualStyleBackColor = false;
@@ -104,9 +108,9 @@
             // 
             this.btnSubmit.BackColor = System.Drawing.Color.SteelBlue;
             this.btnSubmit.ForeColor = System.Drawing.Color.White;
-            this.btnSubmit.Location = new System.Drawing.Point(543, 498);
+            this.btnSubmit.Location = new System.Drawing.Point(384, 489);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(178, 57);
+            this.btnSubmit.Size = new System.Drawing.Size(185, 57);
             this.btnSubmit.TabIndex = 4;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = false;
@@ -116,7 +120,7 @@
             // 
             this.lblEngagement.AutoSize = true;
             this.lblEngagement.ForeColor = System.Drawing.Color.Black;
-            this.lblEngagement.Location = new System.Drawing.Point(380, 466);
+            this.lblEngagement.Location = new System.Drawing.Point(380, 453);
             this.lblEngagement.Name = "lblEngagement";
             this.lblEngagement.Size = new System.Drawing.Size(189, 20);
             this.lblEngagement.TabIndex = 5;
@@ -126,9 +130,9 @@
             // 
             this.btnBackToMain.BackColor = System.Drawing.Color.Salmon;
             this.btnBackToMain.ForeColor = System.Drawing.Color.White;
-            this.btnBackToMain.Location = new System.Drawing.Point(226, 498);
+            this.btnBackToMain.Location = new System.Drawing.Point(14, 15);
             this.btnBackToMain.Name = "btnBackToMain";
-            this.btnBackToMain.Size = new System.Drawing.Size(178, 57);
+            this.btnBackToMain.Size = new System.Drawing.Size(162, 41);
             this.btnBackToMain.TabIndex = 6;
             this.btnBackToMain.Text = "Back to Main Menu";
             this.btnBackToMain.UseVisualStyleBackColor = false;
@@ -136,7 +140,7 @@
             // 
             // progressBarReport
             // 
-            this.progressBarReport.Location = new System.Drawing.Point(275, 416);
+            this.progressBarReport.Location = new System.Drawing.Point(274, 389);
             this.progressBarReport.Name = "progressBarReport";
             this.progressBarReport.Size = new System.Drawing.Size(417, 23);
             this.progressBarReport.Step = 1;
@@ -144,11 +148,11 @@
             // 
             // btnViewImage
             // 
-            this.btnViewImage.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnViewImage.ForeColor = System.Drawing.Color.White;
-            this.btnViewImage.Location = new System.Drawing.Point(743, 252);
+            this.btnViewImage.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.btnViewImage.ForeColor = System.Drawing.Color.Black;
+            this.btnViewImage.Location = new System.Drawing.Point(386, 18);
             this.btnViewImage.Name = "btnViewImage";
-            this.btnViewImage.Size = new System.Drawing.Size(180, 40);
+            this.btnViewImage.Size = new System.Drawing.Size(131, 36);
             this.btnViewImage.TabIndex = 11;
             this.btnViewImage.Text = "View Image";
             this.btnViewImage.UseVisualStyleBackColor = false;
@@ -156,11 +160,11 @@
             // 
             // btnRemoveImage
             // 
-            this.btnRemoveImage.BackColor = System.Drawing.Color.Salmon;
+            this.btnRemoveImage.BackColor = System.Drawing.Color.Tomato;
             this.btnRemoveImage.ForeColor = System.Drawing.Color.White;
-            this.btnRemoveImage.Location = new System.Drawing.Point(743, 311);
+            this.btnRemoveImage.Location = new System.Drawing.Point(542, 20);
             this.btnRemoveImage.Name = "btnRemoveImage";
-            this.btnRemoveImage.Size = new System.Drawing.Size(180, 42);
+            this.btnRemoveImage.Size = new System.Drawing.Size(131, 36);
             this.btnRemoveImage.TabIndex = 13;
             this.btnRemoveImage.Text = "Remove Image";
             this.btnRemoveImage.UseVisualStyleBackColor = false;
@@ -168,10 +172,12 @@
             // 
             // lblReportIssue
             // 
+            this.lblReportIssue.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.lblReportIssue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReportIssue.ForeColor = System.Drawing.Color.Black;
-            this.lblReportIssue.Location = new System.Drawing.Point(351, 31);
+            this.lblReportIssue.Location = new System.Drawing.Point(1, -1);
             this.lblReportIssue.Name = "lblReportIssue";
-            this.lblReportIssue.Size = new System.Drawing.Size(229, 43);
+            this.lblReportIssue.Size = new System.Drawing.Size(983, 62);
             this.lblReportIssue.TabIndex = 12;
             this.lblReportIssue.Text = "Report an Issue";
             this.lblReportIssue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -179,7 +185,7 @@
             // lblRateExperience
             // 
             this.lblRateExperience.ForeColor = System.Drawing.Color.Black;
-            this.lblRateExperience.Location = new System.Drawing.Point(61, 24);
+            this.lblRateExperience.Location = new System.Drawing.Point(37, 242);
             this.lblRateExperience.Name = "lblRateExperience";
             this.lblRateExperience.Size = new System.Drawing.Size(177, 30);
             this.lblRateExperience.TabIndex = 0;
@@ -189,7 +195,7 @@
             // 
             this.btnUpvote.BackColor = System.Drawing.Color.LightGreen;
             this.btnUpvote.ForeColor = System.Drawing.Color.White;
-            this.btnUpvote.Location = new System.Drawing.Point(32, 57);
+            this.btnUpvote.Location = new System.Drawing.Point(8, 275);
             this.btnUpvote.Name = "btnUpvote";
             this.btnUpvote.Size = new System.Drawing.Size(110, 30);
             this.btnUpvote.TabIndex = 1;
@@ -201,7 +207,7 @@
             // 
             this.btnDownvote.BackColor = System.Drawing.Color.LightSalmon;
             this.btnDownvote.ForeColor = System.Drawing.Color.White;
-            this.btnDownvote.Location = new System.Drawing.Point(148, 57);
+            this.btnDownvote.Location = new System.Drawing.Point(124, 275);
             this.btnDownvote.Name = "btnDownvote";
             this.btnDownvote.Size = new System.Drawing.Size(107, 30);
             this.btnDownvote.TabIndex = 2;
@@ -211,40 +217,53 @@
             // 
             // btnViewIssues
             // 
-            this.btnViewIssues.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnViewIssues.ForeColor = System.Drawing.Color.White;
-            this.btnViewIssues.Location = new System.Drawing.Point(743, 370); // Position can be adjusted as needed
+            this.btnViewIssues.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.btnViewIssues.ForeColor = System.Drawing.Color.Black;
+            this.btnViewIssues.Location = new System.Drawing.Point(798, 16);
             this.btnViewIssues.Name = "btnViewIssues";
-            this.btnViewIssues.Size = new System.Drawing.Size(180, 42);
+            this.btnViewIssues.Size = new System.Drawing.Size(148, 41);
             this.btnViewIssues.TabIndex = 14;
             this.btnViewIssues.Text = "View All Issues";
             this.btnViewIssues.UseVisualStyleBackColor = false;
             this.btnViewIssues.Click += new System.EventHandler(this.BtnViewIssues_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.panel1.Controls.Add(this.btnAttachMedia);
+            this.panel1.Controls.Add(this.btnViewIssues);
+            this.panel1.Controls.Add(this.btnViewImage);
+            this.panel1.Controls.Add(this.btnRemoveImage);
+            this.panel1.Controls.Add(this.btnBackToMain);
+            this.panel1.Location = new System.Drawing.Point(-2, 585);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(986, 73);
+            this.panel1.TabIndex = 15;
             // 
             // ReportPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(981, 658);
-            this.Controls.Add(this.btnViewIssues); // Add the button to the form's controls
-            this.Controls.Add(this.btnRemoveImage);
-            this.Controls.Add(this.btnViewImage);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.progressBarReport);
             this.Controls.Add(this.txtLocation);
             this.Controls.Add(this.cmbCategory);
-            this.Controls.Add(this.rtbDescription);
-            this.Controls.Add(this.btnAttachMedia);
             this.Controls.Add(this.btnSubmit);
+            this.Controls.Add(this.rtbDescription);
             this.Controls.Add(this.lblEngagement);
-            this.Controls.Add(this.btnBackToMain);
             this.Controls.Add(this.lblReportIssue);
             this.Controls.Add(this.lblRateExperience);
             this.Controls.Add(this.btnUpvote);
             this.Controls.Add(this.btnDownvote);
             this.Name = "ReportPage";
             this.Text = "Report Issue";
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
+
+        private System.Windows.Forms.Panel panel1;
     }
 }

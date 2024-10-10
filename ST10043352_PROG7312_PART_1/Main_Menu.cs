@@ -25,12 +25,13 @@ namespace ST10043352_PROG7312_PART_1
             this.Hide();
             report.Show();
         }
-
         private void BtnLocalEvents_Click(object sender, EventArgs e)
         {
-            // Code to handle the "Local Events and Announcements" functionality
-            MessageBox.Show("This feature will be available soon.");
+            LocalEventsForm localEventsForm = new LocalEventsForm();
+            this.Hide();
+            localEventsForm.Show();
         }
+
 
         private void BtnServiceRequestStatus_Click(object sender, EventArgs e)
         {
