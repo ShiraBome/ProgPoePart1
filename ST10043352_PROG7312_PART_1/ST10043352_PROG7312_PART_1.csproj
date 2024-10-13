@@ -81,6 +81,9 @@
     <Compile Include="ReportPage.Designer.cs">
       <DependentUpon>ReportPage.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="LocalEventsForm.resx">
+      <DependentUpon>LocalEventsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main_Menu.resx">
       <DependentUpon>Main_Menu.cs</DependentUpon>
     </EmbeddedResource>

@@ -18,7 +18,6 @@ namespace ST10043352_PROG7312_PART_1
             int result = Priority.CompareTo(other.Priority);
             if (result == 0)
             {
-                // Tie-breaker to prevent duplicate keys
                 result = Event.Title.CompareTo(other.Event.Title);
             }
             return result;
