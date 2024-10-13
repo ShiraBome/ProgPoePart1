@@ -10,12 +10,16 @@ namespace ST10043352_PROG7312_PART_1
         // Data Structures
         private SortedDictionary<DateTime, List<Event>> eventsByDate = new SortedDictionary<DateTime, List<Event>>();
         private HashSet<string> uniqueCategories = new HashSet<string>();
-        private Stack<string> searchHistory = new Stack<string>();
         private SortedSet<PriorityEvent> priorityEvents = new SortedSet<PriorityEvent>();
         private Queue<Event> eventQueue = new Queue<Event>();
+        // Modify the field to store the search patterns
+        private List<SearchPattern> searchHistory = new List<SearchPattern>();
+
 
         // New List to Store Favorite Events
         private List<Event> favoriteEvents = new List<Event>();
+
+
 
         public LocalEventsForm()
         {
@@ -32,6 +36,59 @@ namespace ST10043352_PROG7312_PART_1
             listViewEvents.ItemActivate += listViewEvents_ItemActivate;
             listViewRecommendations.ItemActivate += listViewRecommendations_ItemActivate;
         }
+     
+
+        // Modify the method to save multiple searches in the list
+        private void SaveSearchPattern(string category, DateTime date, string keyword)
+        {
+            SearchPattern search = new SearchPattern(category, date, keyword);
+            searchHistory.Add(search);
+        }
+        private List<Event> GenerateRecommendations()
+        {
+            // Step 1: Analyze frequent categories and keywords from the search history
+            var frequentCategories = searchHistory
+                .GroupBy(search => search.Category)
+                .OrderByDescending(group => group.Count())
+                .Select(group => group.Key)
+                .Take(2)  // Take top 2 categories
+                .ToList();
+
+            var frequentKeywords = searchHistory
+                .Where(search => !string.IsNullOrWhiteSpace(search.Keyword))
+                .GroupBy(search => search.Keyword)
+                .OrderByDescending(group => group.Count())
+                .Select(group => group.Key)
+                .Take(2)  // Take top 2 keywords
+                .ToList();
+
+            // Step 2: Recommend events matching both frequent categories and keywords
+            var recommendedEvents = eventsByDate.Values
+                .SelectMany(e => e)
+                .Where(evt =>
+                    (frequentCategories.Contains(evt.Category) &&
+                    frequentKeywords.Any(keyword => evt.Title.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                                                     evt.Description.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)))
+                .OrderBy(e => e.Date)
+                .Take(5)  // Take top 5 matching events
+                .ToList();
+
+            // Step 3: Additional events that match only category or keyword
+            var additionalEvents = eventsByDate.Values
+                .SelectMany(e => e)
+                .Where(evt =>
+                    frequentCategories.Contains(evt.Category) ||
+                    frequentKeywords.Any(keyword => evt.Title.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                                                     evt.Description.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0))
+                .OrderBy(e => e.Date)
+                .Take(5)  // Take top 5 additional events
+                .ToList();
+
+            // Step 4: Return combined list of recommendations
+            return recommendedEvents.Concat(additionalEvents).Take(5).ToList();
+        }
+
+
         private void LoadEvents()
         {
             // Extended sample events with more variety in categories and dates
@@ -113,6 +170,7 @@ namespace ST10043352_PROG7312_PART_1
         }
 
         // Modify the DisplayEvents method to display favorite events at the top
+        // Modify the DisplayEvents method to display favorite events at the top
         private void DisplayEvents(IEnumerable<Event> eventList)
         {
             listViewEvents.Items.Clear();
@@ -140,6 +198,7 @@ namespace ST10043352_PROG7312_PART_1
             }
         }
 
+
         private void btnFavoriteEvent_Click(object sender, EventArgs e)
         {
             if (listViewEvents.SelectedItems.Count > 0)
@@ -161,7 +220,6 @@ namespace ST10043352_PROG7312_PART_1
             }
         }
 
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string selectedCategory = cmbCategory.SelectedItem as string;
@@ -174,16 +232,17 @@ namespace ST10043352_PROG7312_PART_1
                 keyword = "";  // Treat it as blank
             }
 
+            // Save the search pattern in the history
             SaveSearchPattern(selectedCategory, selectedDate, keyword);
 
             // Filter events based on the search
             var filteredEvents = FilterEvents(selectedCategory, selectedDate, DateTime.Now.AddMonths(1), keyword);
 
-            // Display events, with favorites on top
+            // Display filtered events and recommendations
             DisplayEvents(filteredEvents);
-
             DisplayRecommendations();
         }
+
 
         private IEnumerable<Event> FilterEvents(string category, DateTime startDate, DateTime endDate, string keyword)
         {
@@ -208,45 +267,17 @@ namespace ST10043352_PROG7312_PART_1
 
 
 
-        private void SaveSearchPattern(string category, DateTime date, string keyword)
-        {
-            string pattern = $"{category}|{date.ToShortDateString()}|{keyword}";
-            searchHistory.Push(pattern);
-        }
+       
 
-        private List<Event> GenerateRecommendations()
-        {
-            if (searchHistory.Count == 0)
-            {
-                return priorityEvents.Select(pe => pe.Event).Take(5).ToList();
-            }
-
-            string lastSearch = searchHistory.Peek();
-            string[] parts = lastSearch.Split('|');
-            string category = parts[0];
-            DateTime date = DateTime.Parse(parts[1]);
-            string keyword = parts[2];
-
-            var recommendations = eventsByDate.Values
-                .SelectMany(e => e)
-                .Where(evt =>
-                    (category != "All Categories" && evt.Category == category) ||
-                    (date != DateTime.Now.Date && evt.Date.Date == date) ||
-                    (!string.IsNullOrEmpty(keyword) &&
-                     (evt.Title.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                      evt.Description.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)))
-                .OrderBy(e => e.Date)
-                .ToList();
-
-            return recommendations;
-        }
-
+       
         private void DisplayRecommendations()
         {
+            // Get recommendations based on search history
             var recommendedEvents = GenerateRecommendations();
 
             listViewRecommendations.Items.Clear();
 
+            // Display recommended events in the ListView
             foreach (var evt in recommendedEvents)
             {
                 ListViewItem item = new ListViewItem(evt.Date.ToShortDateString());
@@ -256,6 +287,7 @@ namespace ST10043352_PROG7312_PART_1
                 listViewRecommendations.Items.Add(item);
             }
         }
+
 
         // Event handler for listViewEvents click (item activation)
         private void listViewEvents_ItemActivate(object sender, EventArgs e)
@@ -286,8 +318,74 @@ namespace ST10043352_PROG7312_PART_1
             string description = item.SubItems[3].Text;
 
             string message = $"Event Details:\n\nDate: {date}\nCategory: {category}\nTitle: {title}\nDescription: {description}";
-            MessageBox.Show(message, "Event Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Check if the event is already in the favorites list
+            bool isFavorite = favoriteEvents.Any(evt => evt.Title == title);
+
+            // Display a message box with options to Pin/Unpin or OK
+            DialogResult result;
+            if (isFavorite)
+            {
+                // If the event is a favorite, show Unpin and OK options
+                result = MessageBox.Show(message + "\n\nDo you want to Unpin this event?", "Event Details", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                // If the event is not a favorite, show Pin and OK options
+                result = MessageBox.Show(message + "\n\nDo you want to Pin this event?", "Event Details", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            }
+
+            // Handle the result of the dialog
+            if (result == DialogResult.Yes)
+            {
+                if (isFavorite)
+                {
+                    // If the event is already a favorite, Unpin it
+                    UnpinEvent(title);
+                }
+                else
+                {
+                    // Otherwise, Pin the event
+                    PinEvent(title);
+                }
+            }
         }
+
+        private void PinEvent(string eventTitle)
+        {
+            var selectedEvent = eventsByDate.Values
+                .SelectMany(eventListItem => eventListItem)
+                .FirstOrDefault(evt => evt.Title == eventTitle);
+
+            if (selectedEvent != null && !favoriteEvents.Contains(selectedEvent))
+            {
+                favoriteEvents.Add(selectedEvent);
+                MessageBox.Show($"Event '{selectedEvent.Title}' has been pinned!", "Pin Event", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RefreshEventList();  // Refresh the list to show the updated order
+            }
+        }
+
+        private void UnpinEvent(string eventTitle)
+        {
+            var selectedEvent = favoriteEvents.FirstOrDefault(evt => evt.Title == eventTitle);
+
+            if (selectedEvent != null)
+            {
+                favoriteEvents.Remove(selectedEvent);
+                MessageBox.Show($"Event '{selectedEvent.Title}' has been unpinned!", "Unpin Event", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RefreshEventList();  // Refresh the list to show the updated order
+            }
+        }
+
+        private void RefreshEventList()
+        {
+            // Refreshes the event list by redisplaying events with favorites on top
+            var allEvents = eventsByDate.Values.SelectMany(eventList => eventList);
+            DisplayEvents(allEvents);
+        }
+
+
+
         private void btnViewAllEvents_Click(object sender, EventArgs e)
         {
             // Reset the category selection to "All Categories"
@@ -305,6 +403,7 @@ namespace ST10043352_PROG7312_PART_1
             DisplayEvents(allEvents);
         }
 
+
         private void txtKeyword_GotFocus(object sender, EventArgs e)
         {
             if (txtKeyword.Text == "Enter a keyword")
@@ -319,7 +418,7 @@ namespace ST10043352_PROG7312_PART_1
             if (string.IsNullOrWhiteSpace(txtKeyword.Text))
             {
                 txtKeyword.Text = "Enter a keyword";  // Restore the hint text if left empty
-                txtKeyword.ForeColor = System.Drawing.Color.Gray;  // Optional: Set hint color to gray
+                txtKeyword.ForeColor = System.Drawing.Color.Gray;
             }
         }
 
@@ -331,4 +430,18 @@ namespace ST10043352_PROG7312_PART_1
             menu.Show();
         }
     }
+    public class SearchPattern
+    {
+        public string Category { get; set; }
+        public DateTime Date { get; set; }
+        public string Keyword { get; set; }
+
+        public SearchPattern(string category, DateTime date, string keyword)
+        {
+            Category = category;
+            Date = date;
+            Keyword = keyword;
+        }
+    }
+
 }

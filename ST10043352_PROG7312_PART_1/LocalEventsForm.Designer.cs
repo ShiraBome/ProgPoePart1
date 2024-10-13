@@ -21,7 +21,6 @@
         private System.Windows.Forms.Label lblRecommendations;
         private System.Windows.Forms.Button btnBackToMain;
         private System.Windows.Forms.Button btnViewAllEvents;
-        private System.Windows.Forms.Button btnFavoriteEvent;
 
 
         /// <summary>
@@ -59,20 +58,7 @@
             this.lblRecommendations = new System.Windows.Forms.Label();
             this.btnBackToMain = new System.Windows.Forms.Button();
             this.btnViewAllEvents = new System.Windows.Forms.Button();
-            this.btnFavoriteEvent = new System.Windows.Forms.Button();
-
             this.SuspendLayout();
-            // 
-            // btnFavoriteEvent
-            // 
-            this.btnFavoriteEvent.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btnFavoriteEvent.Location = new System.Drawing.Point(340, 12);
-            this.btnFavoriteEvent.Name = "btnFavoriteEvent";
-            this.btnFavoriteEvent.Size = new System.Drawing.Size(150, 35);
-            this.btnFavoriteEvent.TabIndex = 9;
-            this.btnFavoriteEvent.Text = "Mark as Favorite";
-            this.btnFavoriteEvent.UseVisualStyleBackColor = false;
-            this.btnFavoriteEvent.Click += new System.EventHandler(this.btnFavoriteEvent_Click);
             // 
             // listViewEvents
             // 
@@ -129,17 +115,13 @@
             // 
             // txtKeyword
             // 
-            // 
-            // txtKeyword
-            // 
             this.txtKeyword.Location = new System.Drawing.Point(485, 74);
             this.txtKeyword.Name = "txtKeyword";
             this.txtKeyword.Size = new System.Drawing.Size(150, 26);
             this.txtKeyword.TabIndex = 3;
-            this.txtKeyword.Text = "Enter a keyword";  // Set default text
+            this.txtKeyword.Text = "Enter a keyword";
             this.txtKeyword.GotFocus += new System.EventHandler(this.txtKeyword_GotFocus);
             this.txtKeyword.LostFocus += new System.EventHandler(this.txtKeyword_LostFocus);
-
             // 
             // btnSearch
             // 
@@ -244,8 +226,6 @@
             this.Controls.Add(this.dtpEventDate);
             this.Controls.Add(this.cmbCategory);
             this.Controls.Add(this.listViewEvents);
-            this.Controls.Add(this.btnFavoriteEvent);
-
             this.Name = "LocalEventsForm";
             this.Text = "Local Events and Announcements";
             this.ResumeLayout(false);
