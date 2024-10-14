@@ -72,7 +72,7 @@
             this.listViewEvents.HideSelection = false;
             this.listViewEvents.Location = new System.Drawing.Point(12, 150);
             this.listViewEvents.Name = "listViewEvents";
-            this.listViewEvents.Size = new System.Drawing.Size(760, 200);
+            this.listViewEvents.Size = new System.Drawing.Size(748, 205);
             this.listViewEvents.TabIndex = 0;
             this.listViewEvents.UseCompatibleStateImageBehavior = false;
             this.listViewEvents.View = System.Windows.Forms.View.Details;
